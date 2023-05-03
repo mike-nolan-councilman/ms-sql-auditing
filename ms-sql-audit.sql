@@ -13,26 +13,26 @@ use master
 CREATE DATABASE AUDIT SPECIFICATION [SQL_DB_Master_Audit_SI]
 FOR SERVER AUDIT [SQL_Audit_SI]
 -- Auditing for Stored Procedures and Extended Stored Procedures
-ADD (EXECUTE ON OBJECT::[dbo].[xp_cmdshell] BY [dbo]),			        -- Used to execute commands in the context of the service running MS-SQL
-ADD (EXECUTE ON OBJECT::[dbo].[sp_addextendedproc] BY [dbo]),		    -- Audit for new custom extended stored procedures
-ADD (EXECUTE ON OBJECT::[dbo].[sp_execute_external_script] BY [dbo]), 	-- Audit for external scripts like R and Python
-ADD (EXECUTE ON OBJECT::[dbo].[Sp_oacreate] BY [dbo]),			        -- Audit OLE Automation Procedure execution
+ADD (EXECUTE ON OBJECT::[dbo].[xp_cmdshell] BY [dbo]),                  -- Used to execute commands in the context of the service running MS-SQL
+ADD (EXECUTE ON OBJECT::[dbo].[sp_addextendedproc] BY [dbo]),           -- Audit for new custom extended stored procedures
+ADD (EXECUTE ON OBJECT::[dbo].[sp_execute_external_script] BY [dbo]),   -- Audit for external scripts like R and Python
+ADD (EXECUTE ON OBJECT::[dbo].[Sp_oacreate] BY [dbo]),                  -- Audit OLE Automation Procedure execution
 ADD (EXECUTE ON OBJECT::[dbo].[xp_dirtree] BY [dbo]),                   -- Used to steal hashes over SMB
 ADD (EXECUTE ON OBJECT::[dbo].[xp_availablemedia] BY [dbo]),            -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_enumgroups] BY [dbo]),		        -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_fixeddrives] BY [dbo]),		        -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_servicecontrol] BY [dbo]),		    -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_subdirs] BY [dbo]),		            -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_regaddmultistring] BY [dbo]),		    -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_regdeletekey] BY [dbo]),		        -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_regdeletevalue] BY [dbo]),		    -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_regremovemultistring] BY [dbo]),		-- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_regwrite] BY [dbo]),		            -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[xp_regread] BY [dbo]),		            -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
-ADD (EXECUTE ON OBJECT::[dbo].[sp_addsrvrolemember] BY [dbo]),		    -- Can be used by an attacker to add a newly created account to privileged groups
-ADD (EXECUTE ON OBJECT::[dbo].[sp_configure] BY [dbo]),		            -- Can be used by an attacker to enable other XPs such as xp_cmdshell for further use
-ADD (EXECUTE ON OBJECT::[dbo].[sp_linkedservers] BY [dbo]),		        -- Can be used by an attacker to enable other XPs such as xp_cmdshell for further use
-ADD (EXECUTE ON OBJECT::[dbo].[sp_helprotect] BY [dbo]),		        -- Can be used by an attacker to check privs on other SP and XPs for further use
+ADD (EXECUTE ON OBJECT::[dbo].[xp_enumgroups] BY [dbo]),                -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_fixeddrives] BY [dbo]),               -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_servicecontrol] BY [dbo]),            -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_subdirs] BY [dbo]),                   -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_regaddmultistring] BY [dbo]),         -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_regdeletekey] BY [dbo]),              -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_regdeletevalue] BY [dbo]),            -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_regremovemultistring] BY [dbo]),      -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_regwrite] BY [dbo]),                  -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[xp_regread] BY [dbo]),                   -- CIS Benchmark for SQL Server 2008R2 and SQL Server 2012 
+ADD (EXECUTE ON OBJECT::[dbo].[sp_addsrvrolemember] BY [dbo]),          -- Can be used by an attacker to add a newly created account to privileged groups
+ADD (EXECUTE ON OBJECT::[dbo].[sp_configure] BY [dbo]),                 -- Can be used by an attacker to enable other XPs such as xp_cmdshell for further use
+ADD (EXECUTE ON OBJECT::[dbo].[sp_linkedservers] BY [dbo]),             -- Can be used by an attacker to enable other XPs such as xp_cmdshell for further use
+ADD (EXECUTE ON OBJECT::[dbo].[sp_helprotect] BY [dbo]),                -- Can be used by an attacker to check privs on other SP and XPs for further use
 ADD (EXECUTE ON OBJECT::[dbo].[sp_add_trusted_assembly] BY [dbo]),      -- Can be used by an attacker to add an untrusted DLL file for execution by a custom stored procedure
 -- Auditing for certain queries an attacker may run
 ADD (SELECT ON OBJECT::[sys].[sysdatabases] BY [dbo]),                  -- Can be used by an attacker to enumerate all the databases on a server
@@ -78,8 +78,8 @@ use msdb
 CREATE DATABASE AUDIT SPECIFICATION [SQL_DB_MSDB_Audit_SI]
 FOR SERVER AUDIT [SQL_Audit_SI]
 -- Auditing for Stored Procedures and Extended Stored Procedures
-ADD (EXECUTE ON OBJECT::[dbo].[sp_add_job] BY [dbo]),   	            -- Can be used by an attacker to add a job which can execute custom commands
-ADD (EXECUTE ON OBJECT::[dbo].[sp_delete_job] BY [dbo]),    	        -- Can be used by an attacker to remove a job to hide what they have executed
+ADD (EXECUTE ON OBJECT::[dbo].[sp_add_job] BY [dbo]),                   -- Can be used by an attacker to add a job which can execute custom commands
+ADD (EXECUTE ON OBJECT::[dbo].[sp_delete_job] BY [dbo]),                -- Can be used by an attacker to remove a job to hide what they have executed
 -- Auditing for certain queries an attacker may run
 ADD (SELECT ON OBJECT::[dbo].[sysjobs] BY [dbo])                        -- Can be used by an attacker to enumerate all jobs on a database server which may contain hardcoded credentials
 WITH (STATE = ON)
