@@ -1,0 +1,37 @@
+{
+    "rule name": "Database - Query - sys.server_principals",
+    "author": "Tristan Bennett",
+    "si category": "Attack",
+    "class": "unknown",
+    "rule phase": 4,
+    "baseline": "Database Monitoring",
+    "oncall": "No",
+    "related_activity": "MS-SQL attack",
+    "false positives": "TBD",
+    "si score": 3,
+    "vendor id": "33205",
+    "flow": "None",
+    "flow reason": "None",
+    "references": "https://github.com/rapid7/metasploit-framework/tree/master/modules/auxiliary/admin/mssql",
+    "pre-requisite": "MS-SQL",
+    "required logging policy": "Seamless Intelligence MS-SQL",
+    "required custom parser": "Yes",
+    "brief description": "Detects when a SQL query is executed to return information related to server principles which have a high privilege within the database. A query such as this can allow an attacker to understand  which accounts to target for further abuse.",
+    "status": "Production",
+    "playbook": "Not Required",
+    "att&ck details": {
+        "matrix": "enterprise",
+        "att&ck tactic(s)": [
+            "Discovery"
+        ],
+        "att&ck technique": "System Information Discovery",
+        "att&ck id": "T1082"
+    },
+    "csc control": "Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs",
+    "log source details": {
+        "log source criteria": "Include Log Sources from the Selected Lists",
+        "log source value": [
+            "MS Windows Application"
+        ]
+    }
+}

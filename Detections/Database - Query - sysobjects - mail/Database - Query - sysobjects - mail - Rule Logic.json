@@ -1,0 +1,69 @@
+{
+    "rule logic": {
+        "rule name": "Database - Query - sysobjects - mail",
+        "rule id": 1000001065,
+        "rule_group": "Execution",
+        "description": "Detects when a SQL query is executed to return information to find if the email related stored procedures are enabled. If the email stored procedure is enabled the attacker can abuse it to exfiltrate data.  ",
+        "references": "Reference - https://github.com/rapid7/metasploit-framework/tree/master/modules/auxiliary/admin/mssql\r\nATT&CK Tactic - Discovery\r\nATT&CK Technique - System Information Discovery\r\nATT&CK ID - T1082\r\nCIS Reference - Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs\r\n\r\nPossible Related Activity - MS-SQL attack",
+        "rule block": [
+            {
+                "rule block type": "LogObserved",
+                "rule block description": "",
+                "rule block data source": "Data Processing Logs",
+                "primary_criteria 0": {
+                    "filter operator 0": "And",
+                    "filter field 0": "Vendor Message ID",
+                    "filter mode 0": "Is",
+                    "filter values 0": [
+                        "33205"
+                    ]
+                },
+                "include filters": [
+                    {
+                        "filter operator": "And",
+                        "filter field": "Command",
+                        "filter mode": "Is",
+                        "filter values": [
+                            {
+                                "value type": "String",
+                                "value": "select.*sysobjects.*like.*mail",
+                                "match type": "Regex",
+                                "regex ignore case": "True"
+                            }
+                        ]
+                    }
+                ],
+                "exclude filters": "None",
+                "log source": [
+                    {
+                        "criteria": "Include All Log Sources",
+                        "value": "None",
+                        "name": "Include All Log Sources"
+                    }
+                ],
+                "group by fields": [
+                    "Login",
+                    "DHostName"
+                ],
+                "aie summary fields": [
+                    "Command",
+                    "Group",
+                    "DHostName",
+                    "SIP",
+                    "Process",
+                    "Login"
+                ]
+            }
+        ],
+        "classification": "Security/Suspicious",
+        "risk rating": 5,
+        "risk label": "Medium Risk",
+        "alarm settings": 1,
+        "automatic drilldown": 1,
+        "false positive probability": 0,
+        "environmental dependence factor": 0,
+        "expiration date": null,
+        "rule set": "Seamless Intelligence",
+        "data segregation": 2
+    }
+}
