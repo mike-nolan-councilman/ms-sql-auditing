@@ -1,0 +1,20 @@
+{
+    "rule name": "Database - Priv Esc - Grant Impersonate On",
+    "test attribution": "Seamless Intelligence",
+    "test package": "N/A",
+    "test performed via": "Run from Kali",
+    "admin level required": "N/A",
+    "test pre-requisites": "N/A",
+    "error_reason": "N/A",
+    "tests": [
+        "See auto-test"
+    ],
+    "test description": "N/A",
+    "automated testing": {
+        "test mechanism": "N/A",
+        "test command": "grant impersonate on login::sa to [corp1\\2lo]; ",
+        "test args": "N/A",
+        "test pattern": "N/A",
+        "sql pattern": "N/A"
+    }
+}

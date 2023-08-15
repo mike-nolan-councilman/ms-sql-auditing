@@ -1,0 +1,37 @@
+{
+    "rule name": "Database - Config Changed - sp_configure - show advanced options",
+    "author": "Tristan Bennett",
+    "si category": "Attack",
+    "class": "unknown",
+    "rule phase": 4,
+    "baseline": "Database Monitoring",
+    "oncall": "No",
+    "related_activity": "MS-SQL attack",
+    "false positives": "TBD",
+    "si score": 8,
+    "vendor id": "33205",
+    "flow": "None",
+    "flow reason": "None",
+    "references": "https://github.com/NetSPI/PowerUpSQL",
+    "pre-requisite": "MS-SQL",
+    "required logging policy": "Seamless Intelligence MS-SQL",
+    "required custom parser": "Yes",
+    "brief description": "Detects when a stored procedure is used to show or change some of the advanced configuration of a database. This can be used to see if xp_cmdshell is enabled and then enable it if needed.",
+    "status": "Production",
+    "playbook": "Not Required",
+    "att&ck details": {
+        "matrix": "enterprise",
+        "att&ck tactic(s)": [
+            "Persistence"
+        ],
+        "att&ck technique": "Server Software Component",
+        "att&ck id": "T1505"
+    },
+    "csc control": "Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs",
+    "log source details": {
+        "log source criteria": "Include Log Sources from the Selected Lists",
+        "log source value": [
+            "MS Windows Application"
+        ]
+    }
+}

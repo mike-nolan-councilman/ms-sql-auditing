@@ -1,0 +1,40 @@
+{
+    "rule name": "Database - Local Account Creation",
+    "author": "Tristan Bennett",
+    "si category": "Attack",
+    "class": "unknown",
+    "rule phase": 4,
+    "baseline": "Database Monitoring",
+    "oncall": "No",
+    "related_activity": "MS-SQL attack",
+    "false positives": "TBD",
+    "si score": 5,
+    "vendor id": "33205",
+    "flow": "None",
+    "flow reason": "None",
+    "references": "https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server",
+    "pre-requisite": "MS-SQL",
+    "required logging policy": "Seamless Intelligence MS-SQL",
+    "required custom parser": "Yes",
+    "brief description": "Detects when an account is created within the database itself. ",
+    "status": "Production",
+    "playbook": "Not Required",
+    "att&ck details": {
+        "matrix": "enterprise",
+        "att&ck tactic(s)": [
+            "Defense Evasion",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+        ],
+        "att&ck technique": "Valid Accounts",
+        "att&ck id": "T1078"
+    },
+    "csc control": "Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs",
+    "log source details": {
+        "log source criteria": "Include Log Sources from the Selected Lists",
+        "log source value": [
+            "MS Windows Application"
+        ]
+    }
+}

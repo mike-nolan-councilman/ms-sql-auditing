@@ -1,0 +1,20 @@
+{
+    "rule name": "Database - Multiple Suspicious Activities - User",
+    "test attribution": "Seamless Intelligence",
+    "test package": "N/A",
+    "test performed via": "N/A",
+    "admin level required": "N/A",
+    "test pre-requisites": "N/A",
+    "error_reason": "N/A",
+    "tests": [
+        "See auto-test"
+    ],
+    "test description": "N/A",
+    "automated testing": {
+        "test mechanism": "N/A",
+        "test command": "N/A",
+        "test args": "N/A",
+        "test pattern": "N/A",
+        "sql pattern": "N/A"
+    }
+}

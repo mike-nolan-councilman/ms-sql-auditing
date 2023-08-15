@@ -1,0 +1,20 @@
+{
+    "rule name": "Database - Local Account Creation",
+    "test attribution": "Seamless Intelligence",
+    "test package": "N/A",
+    "test performed via": "Run from Kali",
+    "admin level required": "N/A",
+    "test pre-requisites": "N/A",
+    "error_reason": "N/A",
+    "tests": [
+        "See auto-test"
+    ],
+    "test description": "N/A",
+    "automated testing": {
+        "test mechanism": "N/A",
+        "test command": "CREATE LOGIN hacker123 WITH PASSWORD = 'P@ssword123!'",
+        "test args": "N/A",
+        "test pattern": "N/A",
+        "sql pattern": "N/A"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "rule name": "Database - Config Changed - sp_configure - ole automation",
+    "test attribution": "Seamless Intelligence",
+    "test package": "N/A",
+    "test performed via": "Windows Test Server",
+    "admin level required": "N/A",
+    "test pre-requisites": "N/A",
+    "error_reason": "N/A",
+    "tests": [
+        "See auto-test"
+    ],
+    "test description": "N/A",
+    "automated testing": {
+        "test mechanism": "powershell.exe",
+        "test command": "Invoke-SQLOSCmdOle -Verbose -Command \"nltest\" -Instance \"192.168.3.22,1433\"",
+        "test args": "N/A",
+        "test pattern": "N/A",
+        "sql pattern": "N/A"
+    }
+}

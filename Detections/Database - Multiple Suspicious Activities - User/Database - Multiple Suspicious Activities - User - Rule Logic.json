@@ -1,0 +1,96 @@
+{
+    "rule logic": {
+        "rule name": "Database - Multiple Suspicious Activities - User",
+        "rule id": 1000000880,
+        "rule_group": "Threat Indicator",
+        "description": "Detects when many related events occur that are related to database monitoring and linked to the same user. ",
+        "references": "Reference - https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server\r\nATT&CK Tactic - Defense Evasion\r\nATT&CK Tactic - Persistence\r\nATT&CK Tactic - Privilege Escalation\r\nATT&CK Tactic - Initial Access\r\nATT&CK Technique - Valid Accounts\r\nATT&CK ID - T1078\r\nCIS Reference - Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs\r\n\r\nPossible Related Activity - MS-SQL attack",
+        "rule block": [
+            {
+                "rule block type": "UniqueValuesObserved",
+                "rule block description": "",
+                "rule block data source": "Advanced Intelligence Engine Events",
+                "primary_criteria 0": {
+                    "filter operator 0": "And",
+                    "filter field 0": "Common Event",
+                    "filter mode 0": "Is",
+                    "filter values 0": [
+                        "AIE: Database - Information Gathering - INFORMATION_SCHEMA.TABLES",
+                        "AIE: Database - Information Gathering - master.dbo.sysdatabases",
+                        "AIE: Database - Information Gathering - sys.database_principals",
+                        "AIE: Database - Information Gathering - sys.server_principals",
+                        "AIE: Database - Information Gathering - sys.servers",
+                        "AIE: Database - Information Gathering - sysusers",
+                        "AIE: Database - Stored Procedure Execution - helprotect",
+                        "AIE: Database - Stored Procedure Execution - sp_linkedservers",
+                        "AIE: Database - Stored Procedure Execution - xp_cmdshell",
+                        "AIE: Database - Stored Procedure Execution - xp_dirtree",
+                        "AIE: Database - Config Changed - sp_configure - show advanced options",
+                        "AIE: Database - Config Changed - sp_configure - xp_cmdshell",
+                        "AIE: Database - Local Account Creation",
+                        "AIE: Database - Priv Esc - Execute As Login",
+                        "AIE: Database - Priv Esc - Execute As User",
+                        "AIE: Database - Priv Esc - Grant Impersonate On",
+                        "AIE: Database - Recon - sys.database_principals - TEST",
+                        "AIE: Database - Recon - sys.database_principals - TEST 2",
+                        "AIE: Database - Recon - sys.database_principals - TEST 3",
+                        "AIE: Database - Stored Procedure Execution - sp_execute_external_script",
+                        "AIE: Database - Query - password_hash",
+                        "AIE: Database - Query - sys.configurations",
+                        "AIE: Database - Query - sys.syslogins",
+                        "AIE: Database - Query - sysobjects - mail",
+                        "AIE: Database - Query - sysobjects - sp_OA",
+                        "AIE: Database - Stored Procedure Execution - xp_regread",
+                        "AIE: Database - Stored Procedure Execution - xp_regwrite",
+                        "AIE: Database - Config Changed - sp_configure - ole automation",
+                        "AIE: Database - Query - sysjobs - Job Enumeration",
+                        "AIE: Database - Query - sysprocesses - SQL Agent",
+                        "AIE: Database - Stored Procedure - add_job",
+                        "AIE: Database - Stored Procedure - sp_add_trusted_assembly",
+                        "AIE: Database - Stored Procedure - sp_add_trusted_assembly - HTTP",
+                        "AIE: Database - Stored Procedure - sp_addsrvrolemember",
+                        "AIE: Database - Stored Procedure - sp_oacreate wscript"
+                    ]
+                },
+                "include filters": [],
+                "exclude filters": "None",
+                "log source": [
+                    {
+                        "criteria": "Include All Log Sources",
+                        "value": "None",
+                        "name": "Include All Log Sources"
+                    }
+                ],
+                "group by fields": [
+                    "Login"
+                ],
+                "aie summary fields": [
+                    "MsgClass",
+                    "CommonEvent",
+                    "DHostName",
+                    "SHostName",
+                    "DIP",
+                    "SIP",
+                    "Process",
+                    "Result",
+                    "Login"
+                ],
+                "unique values": {
+                    "field": "CommonEvent",
+                    "occurrences": "5",
+                    "time limit": "0 Days 0 Hours 30 Minutes 0 Seconds"
+                }
+            }
+        ],
+        "classification": "Security/Attack",
+        "risk rating": 9,
+        "risk label": "High Risk",
+        "alarm settings": 1,
+        "automatic drilldown": 1,
+        "false positive probability": 0,
+        "environmental dependence factor": 0,
+        "expiration date": null,
+        "rule set": "Seamless Intelligence",
+        "data segregation": 2
+    }
+}
