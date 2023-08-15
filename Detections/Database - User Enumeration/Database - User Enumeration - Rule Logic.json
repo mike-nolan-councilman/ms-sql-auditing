@@ -1,0 +1,71 @@
+{
+    "rule logic": {
+        "rule name": "Database - User Enumeration",
+        "rule id": 1000000886,
+        "rule_group": "Credential Access",
+        "description": "Detects failed authentication from an excessive amount of unique usernames to a single database.",
+        "references": "Reference - https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server\r\nATT&CK Tactic - Defense Evasion\r\nATT&CK Tactic - Persistence\r\nATT&CK Tactic - Privilege Escalation\r\nATT&CK Tactic - Initial Access\r\nATT&CK Technique - Valid Accounts\r\nATT&CK ID - T1078\r\nCIS Reference - Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs\r\n\r\nPossible Related Activity - MS-SQL attack",
+        "rule block": [
+            {
+                "rule block type": "UniqueValuesObserved",
+                "rule block description": "Detects failed authentication from an excessive amount of unique usernames from a single host.",
+                "rule block data source": "Data Processing Logs",
+                "primary_criteria 0": {
+                    "filter operator 0": "And",
+                    "filter field 0": "Classification",
+                    "filter mode 0": "Is",
+                    "filter values 0": [
+                        "Authentication Failure"
+                    ]
+                },
+                "include filters": [
+                    {
+                        "filter operator": "And",
+                        "filter field": "Vendor Message ID",
+                        "filter mode": "Is",
+                        "filter values": [
+                            {
+                                "value type": "18456"
+                            }
+                        ]
+                    }
+                ],
+                "exclude filters": "None",
+                "log source": [
+                    {
+                        "criteria": "Include Log Sources from the Selected Lists",
+                        "value": "2073",
+                        "name": "SI - Windows Server Application"
+                    }
+                ],
+                "group by fields": [
+                    "DHostName"
+                ],
+                "aie summary fields": [
+                    "MsgClass",
+                    "Destination",
+                    "Source",
+                    "SIP",
+                    "Reason",
+                    "Login",
+                    "VendorInfo"
+                ],
+                "unique values": {
+                    "field": "Login",
+                    "occurrences": "5",
+                    "time limit": "0 Days 0 Hours 1 Minutes 0 Seconds"
+                }
+            }
+        ],
+        "classification": "Audit/Authentication Failure",
+        "risk rating": 5,
+        "risk label": "Medium Risk",
+        "alarm settings": 1,
+        "automatic drilldown": 1,
+        "false positive probability": 5,
+        "environmental dependence factor": 1,
+        "expiration date": null,
+        "rule set": "Seamless Intelligence",
+        "data segregation": 2
+    }
+}

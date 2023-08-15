@@ -1,0 +1,20 @@
+{
+    "rule name": "Database - Stored Procedure - xp_regread",
+    "test attribution": "Seamless Intelligence",
+    "test package": "N/A",
+    "test performed via": "Run from Kali",
+    "admin level required": "N/A",
+    "test pre-requisites": "N/A",
+    "error_reason": "N/A",
+    "tests": [
+        "See auto-test"
+    ],
+    "test description": "N/A",
+    "automated testing": {
+        "test mechanism": "N/A",
+        "test command": "EXECUTE master.sys.xp_regread 'HKEY_LOCAL_MACHINE', 'SYSTEM\\CurrentControlSet\\Control\\SecurityProviders\\WDigest', 'UseLogonCredential';",
+        "test args": "N/A",
+        "test pattern": "N/A",
+        "sql pattern": "N/A"
+    }
+}

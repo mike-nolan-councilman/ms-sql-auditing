@@ -1,0 +1,69 @@
+{
+    "rule logic": {
+        "rule name": "Database - Stored Procedure - sp_add_trusted_assembly",
+        "rule id": 1000001074,
+        "rule_group": "Execution",
+        "description": "Detects the usage of a stored procedure to add the file hash for an assembly that can then be executed by the SQL server. Using this stored procedure an attacker get the SQL server to trust a malicious DLL and then use a custom job to execute it. ",
+        "references": "Reference - https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server\r\nATT&CK Tactic - Persistence\r\nATT&CK Technique - Server Software Component\r\nATT&CK ID - T1505\r\nCIS Reference - Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs\r\n\r\nPossible Related Activity - MS-SQL attack",
+        "rule block": [
+            {
+                "rule block type": "LogObserved",
+                "rule block description": "",
+                "rule block data source": "Data Processing Logs",
+                "primary_criteria 0": {
+                    "filter operator 0": "And",
+                    "filter field 0": "Vendor Message ID",
+                    "filter mode 0": "Is",
+                    "filter values 0": [
+                        "33205"
+                    ]
+                },
+                "include filters": [
+                    {
+                        "filter operator": "And",
+                        "filter field": "Command",
+                        "filter mode": "Is",
+                        "filter values": [
+                            {
+                                "value type": "String",
+                                "value": "sp_add_trusted_assembly",
+                                "match type": "Regex",
+                                "regex ignore case": "True"
+                            }
+                        ]
+                    }
+                ],
+                "exclude filters": "None",
+                "log source": [
+                    {
+                        "criteria": "Include All Log Sources",
+                        "value": "None",
+                        "name": "Include All Log Sources"
+                    }
+                ],
+                "group by fields": [
+                    "Login",
+                    "DHostName"
+                ],
+                "aie summary fields": [
+                    "Command",
+                    "Group",
+                    "DHostName",
+                    "SIP",
+                    "Process",
+                    "Login"
+                ]
+            }
+        ],
+        "classification": "Security/Suspicious",
+        "risk rating": 8,
+        "risk label": "High Risk",
+        "alarm settings": 1,
+        "automatic drilldown": 1,
+        "false positive probability": 0,
+        "environmental dependence factor": 0,
+        "expiration date": null,
+        "rule set": "Seamless Intelligence",
+        "data segregation": 2
+    }
+}

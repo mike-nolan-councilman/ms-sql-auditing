@@ -1,0 +1,37 @@
+{
+    "rule name": "Database - Stored Procedure - xp_regread",
+    "author": "Tristan Bennett",
+    "si category": "Attack",
+    "class": "unknown",
+    "rule phase": 4,
+    "baseline": "Database Monitoring",
+    "oncall": "No",
+    "related_activity": "MS-SQL attack",
+    "false positives": "TBD",
+    "si score": 3,
+    "vendor id": "33205",
+    "flow": "None",
+    "flow reason": "None",
+    "references": "https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server",
+    "pre-requisite": "MS-SQL",
+    "required logging policy": "Seamless Intelligence MS-SQL",
+    "required custom parser": "Yes",
+    "brief description": "Detects the usage of a stored procedure to read keys from the local Windows Registry. Using this stored procedure an attacker can gain an understanding of possible abuse paths on the server. ",
+    "status": "Production",
+    "playbook": "Not Required",
+    "att&ck details": {
+        "matrix": "enterprise",
+        "att&ck tactic(s)": [
+            "Persistence"
+        ],
+        "att&ck technique": "Server Software Component",
+        "att&ck id": "T1505"
+    },
+    "csc control": "Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs",
+    "log source details": {
+        "log source criteria": "Include Log Sources from the Selected Lists",
+        "log source value": [
+            "MS Windows Application"
+        ]
+    }
+}

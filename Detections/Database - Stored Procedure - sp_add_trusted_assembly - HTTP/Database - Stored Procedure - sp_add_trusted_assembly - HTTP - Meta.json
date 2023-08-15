@@ -1,0 +1,37 @@
+{
+    "rule name": "Database - Stored Procedure - sp_add_trusted_assembly - HTTP",
+    "author": "Tristan Bennett",
+    "si category": "Attack",
+    "class": "unknown",
+    "rule phase": 4,
+    "baseline": "Database Monitoring",
+    "oncall": "Yes",
+    "related_activity": "MS-SQL attack",
+    "false positives": "TBD",
+    "si score": 8,
+    "vendor id": "33205",
+    "flow": "None",
+    "flow reason": "None",
+    "references": "https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server",
+    "pre-requisite": "MS-SQL",
+    "required logging policy": "Seamless Intelligence MS-SQL",
+    "required custom parser": "Yes",
+    "brief description": "Detects the usage of a stored procedure to add the file hash for an assembly from a website that can then be executed by the SQL server. Using this stored procedure an attacker get the SQL server to trust a malicious DLL and then use a custom job to execute it. ",
+    "status": "Production",
+    "playbook": "Not Required",
+    "att&ck details": {
+        "matrix": "enterprise",
+        "att&ck tactic(s)": [
+            "Persistence"
+        ],
+        "att&ck technique": "Server Software Component",
+        "att&ck id": "T1505"
+    },
+    "csc control": "Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs",
+    "log source details": {
+        "log source criteria": "Include Log Sources from the Selected Lists",
+        "log source value": [
+            "MS Windows Application"
+        ]
+    }
+}

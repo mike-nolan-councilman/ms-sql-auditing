@@ -1,0 +1,69 @@
+{
+    "rule logic": {
+        "rule name": "Database - Stored Procedure - add_job",
+        "rule id": 1000001072,
+        "rule_group": "Execution",
+        "description": "Detects the usage of a stored procedure to add a job for SQL to execute. By abusing this mechanism the attacker can run commands as the context of the user running the SQL service. ",
+        "references": "Reference - https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server\r\nATT&CK Tactic - Persistence\r\nATT&CK Technique - Server Software Component\r\nATT&CK ID - T1505\r\nCIS Reference - Critical Security Control #6: Maintenance, Monitoring, and Analysis of Audit Logs\r\n\r\nPossible Related Activity - MS-SQL attack",
+        "rule block": [
+            {
+                "rule block type": "LogObserved",
+                "rule block description": "",
+                "rule block data source": "Data Processing Logs",
+                "primary_criteria 0": {
+                    "filter operator 0": "And",
+                    "filter field 0": "Vendor Message ID",
+                    "filter mode 0": "Is",
+                    "filter values 0": [
+                        "33205"
+                    ]
+                },
+                "include filters": [
+                    {
+                        "filter operator": "And",
+                        "filter field": "Command",
+                        "filter mode": "Is",
+                        "filter values": [
+                            {
+                                "value type": "String",
+                                "value": "execute\\s+dbo.sp_add_job",
+                                "match type": "Regex",
+                                "regex ignore case": "True"
+                            }
+                        ]
+                    }
+                ],
+                "exclude filters": "None",
+                "log source": [
+                    {
+                        "criteria": "Include All Log Sources",
+                        "value": "None",
+                        "name": "Include All Log Sources"
+                    }
+                ],
+                "group by fields": [
+                    "Login",
+                    "DHostName"
+                ],
+                "aie summary fields": [
+                    "Command",
+                    "Group",
+                    "DHostName",
+                    "SIP",
+                    "Process",
+                    "Login"
+                ]
+            }
+        ],
+        "classification": "Security/Suspicious",
+        "risk rating": 5,
+        "risk label": "Medium Risk",
+        "alarm settings": 1,
+        "automatic drilldown": 1,
+        "false positive probability": 0,
+        "environmental dependence factor": 0,
+        "expiration date": null,
+        "rule set": "Seamless Intelligence",
+        "data segregation": 2
+    }
+}
