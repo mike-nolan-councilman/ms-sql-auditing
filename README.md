@@ -1,5 +1,6 @@
 # ms-sql-auditing
 MS-SQL Auditing
+
 **Configuration** - Has the SQL required to implement an initial set of MS-SQL logging.
 
 **Detection** - Has documentation related to detections and testing. Also includes meta data related to each detection. 
