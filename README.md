@@ -1,5 +1,4 @@
-# ms-sql-auditing
-MS-SQL Auditing
+# MS-SQL Auditing - Super Quality Logs
 
 **Configuration** - Has the SQL required to implement an initial set of MS-SQL logging.
 
